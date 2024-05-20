@@ -1,9 +1,10 @@
 name: Python Security Operations
 
 on:
+  push:
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
@@ -15,8 +16,8 @@ jobs:
 
       - name: Set up Python
         uses: actions/setup-python@v2
-        with:
-          python-version: 3.10
+        with :
+          python-version: '3.x'
 
       - name: Install dependencies
         run: |
@@ -29,9 +30,9 @@ jobs:
 
       - name: Run CodeQL Analysis
         uses: github/codeql-action/init@v2
-        with:
-          languages: python
-        continue-on-error: false
+        # with:
+          # languages: python
+        
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
